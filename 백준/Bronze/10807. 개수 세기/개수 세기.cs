@@ -4,29 +4,17 @@ internal class Program
     {
         int n = int.Parse(Console.ReadLine());
 
-        string s = Console.ReadLine();
+        string[] s = Console.ReadLine().Split(' ');
 
-        int v = int.Parse(Console.ReadLine());
+        string v = Console.ReadLine();
 
-        int result = 0;
-
-        string[] sArr = s.Split(' ');
-
-        int[] iArr = new int[n];
+        int count = 0;
 
         for (int i = 0; i < n; i++)
         {
-            iArr[i] = Convert.ToInt32(sArr[i]);
+            if (s[i] == v)
+                count++;
         }
-
-        for (int i = 0; i < n; i++)
-        {
-            if (iArr[i] == v)
-            {
-                result++;
-            }
-        }
-
-        Console.WriteLine(result);
+        Console.WriteLine(count);
     }
 }
