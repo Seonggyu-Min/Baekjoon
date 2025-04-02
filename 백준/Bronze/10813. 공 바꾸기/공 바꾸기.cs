@@ -23,8 +23,6 @@ internal class Program
             bask[chg[1] - 1] = temp;
         }
 
-        for (int i = 0; i < bask.Length; i++)
-            Console.Write($"{bask[i]} ");
-        
+        Console.WriteLine(string.Join(" ", bask));
     }
 }
