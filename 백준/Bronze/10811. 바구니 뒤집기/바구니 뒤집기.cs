@@ -21,9 +21,6 @@ internal class Program
             Array.Reverse(basket, trade[0] - 1, trade[1] - trade[0] + 1);
         }
 
-        foreach (int i in basket)
-        {
-            Console.Write($"{i} ");
-        }
+        Console.WriteLine(string.Join(" ", basket));
     }
 }
