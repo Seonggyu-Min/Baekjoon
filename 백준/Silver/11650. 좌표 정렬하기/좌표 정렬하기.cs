@@ -1,3 +1,4 @@
+using System.Text;
 public class Program
 {
     static void Main(string[] args)
@@ -11,10 +12,12 @@ public class Program
             points[i] = (int.Parse(input[0]), int.Parse(input[1]));
         }
 
-        var sorted = points.OrderBy(x => x).ThenBy(y => y);
-        foreach (var point in sorted)
+        Array.Sort(points);
+        var sb = new StringBuilder();
+        for (int i = 0; i < n; i++)
         {
-            Console.WriteLine($"{point.X} {point.Y}");
+            sb.Append(points[i].X).Append(' ').Append(points[i].Y).Append('\n');
         }
+        Console.Write(sb.ToString());
     }
 }
