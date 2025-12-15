@@ -1,3 +1,5 @@
+using System.Text;
+
 public class Program
 {
     static void Main(string[] args)
@@ -8,18 +10,25 @@ public class Program
 
         for (int i = 0; i < count; i++)
         {
-            string[] log = Console.ReadLine().Split();
+            string line = Console.ReadLine();
+            int index = line.IndexOf(' ');
 
-            if (log[1] == "enter")
-                employees.Add(log[0]);
+            string name = line.Substring(0, index);
+            string action = line.Substring(index + 1);
+
+            if (action == "enter")
+                employees.Add(name);
             else
-                employees.Remove(log[0]);
+                employees.Remove(name);
         }
 
         List<string> result = employees.ToList();
         result.Sort();
+        StringBuilder sb = new();
 
         for (int i = result.Count - 1; i >= 0; i--)
-            Console.WriteLine(result[i]);
+            sb.AppendLine(result[i]);
+
+        Console.WriteLine(sb.ToString());
     }
 }
