@@ -6,7 +6,7 @@ public class Program
     {
         int ownedCardCount = int.Parse(Console.ReadLine());
 
-        Dictionary<int, int> ownedCardDict = new();
+        Dictionary<int, int> ownedCardDict = new(ownedCardCount);
 
         string[] ownedCardArr = Console.ReadLine().Split();
         for (int i = 0; i < ownedCardArr.Length; i++)
