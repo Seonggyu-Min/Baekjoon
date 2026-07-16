@@ -48,15 +48,10 @@ public class Solution {
             // 원하는 상품 목록와 현재 목록이 일치하는지 확인
             foreach (var item in wishDict)
             {
-                if (!cur.TryGetValue(item.Key, out var count))
+                if (!cur.TryGetValue(item.Key, out var count) || count != item.Value)
                 {
                     isEqual = false;
-                    continue;
-                }
-                else if (cur[item.Key] != item.Value)
-                {
-                    isEqual = false;
-                    continue;
+                    break;
                 }
             }
 
