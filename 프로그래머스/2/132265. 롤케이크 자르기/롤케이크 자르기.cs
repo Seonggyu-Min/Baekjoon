@@ -4,16 +4,15 @@ using System.Collections.Generic;
 public class Solution {
     public int solution(int[] topping) {
         int answer = 0;
-        
-        var left = new Dictionary<int/*topping*/, int/*quantity*/>();
-        var right = new Dictionary<int/*topping*/, int/*quantity*/>();
 
-        // 오른쪽 전체 초기화
+        var left = new Dictionary<int, int>();
+        var right = new Dictionary<int, int>();
+
         for (int i = 0; i < topping.Length; i++)
         {
-            var key = topping[i];
+            int key = topping[i];
 
-            if (right.TryGetValue(key, out var count))
+            if (right.TryGetValue(key, out int count))
             {
                 right[key] = count + 1;
             }
@@ -23,11 +22,11 @@ public class Solution {
             }
         }
 
-        for (int i = 0; i < topping.Length; i++)
+        for (int i = 0; i < topping.Length - 1; i++)
         {
-            var key = topping[i];
+            int key = topping[i];
 
-            if (left.TryGetValue(topping[i], out var leftCount))
+            if (left.TryGetValue(key, out int leftCount))
             {
                 left[key] = leftCount + 1;
             }
@@ -36,16 +35,15 @@ public class Solution {
                 left[key] = 1;
             }
 
-            if (right.TryGetValue(topping[i], out var rightCount))
+            int rightCount = right[key];
+
+            if (rightCount == 1)
             {
-                if (1 < rightCount)
-                {
-                    right[key] = rightCount - 1;
-                }
-                else
-                {
-                    right.Remove(key);
-                }
+                right.Remove(key);
+            }
+            else
+            {
+                right[key] = rightCount - 1;
             }
 
             if (left.Count == right.Count)
