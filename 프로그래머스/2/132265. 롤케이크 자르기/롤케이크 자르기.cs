@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 public class Solution {
     public int solution(int[] topping) {
-        // n <= 1_000_000
         int answer = 0;
         
-        // dict 두 개로 분리
         var left = new Dictionary<int/*topping*/, int/*quantity*/>();
         var right = new Dictionary<int/*topping*/, int/*quantity*/>();
 
