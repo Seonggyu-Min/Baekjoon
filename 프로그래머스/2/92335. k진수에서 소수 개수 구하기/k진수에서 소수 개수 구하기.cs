@@ -37,7 +37,7 @@ public class Solution {
 
         return count;
 
-        // O(log(n))
+        // O(√n)
         bool IsPrime(long n)
         {
             if (n < 2) return false;
