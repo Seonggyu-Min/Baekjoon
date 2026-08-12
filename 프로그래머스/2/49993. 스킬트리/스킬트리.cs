@@ -22,25 +22,18 @@ public class Solution {
             bool isValid = true;
             foreach (var userSkill in userSkillTree)
             {
-                // 스킬트리의 스킬이 선행 스킬에 존재하는지 set으로 확인
-                if (set.Contains(userSkill))
+                // 선행 스킬과 관계없는 스킬이면 무시
+                if (!set.Contains(userSkill))
                 {
-                    // 존재한다면 Queue.Dequeue == 스킬 확인
-
-                    var dequeue = queue.Dequeue();
-
-                    if (userSkill == dequeue)
-                    {
-                        queue.Enqueue(dequeue);
-                    }
-                    // 유효하지 않은 스킬트리
-                    else
-                    {
-                        isValid = false;
-                        break;
-                    }
+                    continue;
                 }
-                // 선행 스킬에 없는 스킬이면 무시
+
+                // 현재 배워야 할 선행 스킬과 다르면 잘못된 스킬트리
+                if (userSkill != queue.Dequeue())
+                {
+                    isValid = false;
+                    break;
+                }
             }
 
             if (isValid)
