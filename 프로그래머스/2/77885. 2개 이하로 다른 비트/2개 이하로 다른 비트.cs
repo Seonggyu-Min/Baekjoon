@@ -1,5 +1,4 @@
 using System;
-using System.Text;
 
 public class Solution {
     public long[] solution(long[] numbers) {
@@ -19,49 +18,25 @@ public class Solution {
         {
             var number = numbers[i];
 
-            var binary = Convert.ToString(number, 2);
-            var charArray = new char[number % 2 == 0 ? binary.Length : binary.Length + 1];
-
-            if (number % 2 == 0)
+            // 짝수라면 마지막 비트만 1로 변환
+            if ((number & 1) == 0)
             {
-                for (int j = 0; j < charArray.Length; j++)
-                {
-                    charArray[j] = j == charArray.Length - 1 ? '1' : binary[j];
-                }
+                result[i] = number + 1;
             }
+            // 홀수라면
             else
             {
-                bool hasMetZero = false;
-
-                for (int j = charArray.Length - 1; j >= 0; j--)
+                // 비트를 왼쪽으로 밀면서 첫 0 찾기
+                var bit = 1L;
+                while ((number & bit) != 0)
                 {
-                    if (j == charArray.Length - 1)
-                    {
-                        binary = $"{0}{binary}";
-                    }
-
-                    if (binary[j] == '0' && !hasMetZero)
-                    {
-                        charArray[j] = '1';
-                        charArray[j + 1] = '0';
-
-                        hasMetZero = true;
-                    }
-                    else
-                    {
-                        charArray[j] = binary[j];
-                    }
+                    bit <<= 1;
                 }
-            }
 
-            var sb = new StringBuilder(charArray.Length);
-            foreach (var c in charArray)
-            {
-                sb.Append(c);
+                // 첫 0을 1로 바꾸고 (number + bit)
+                // 바로 오른쪽 1을 0으로 (- (bit >> 1))
+                result[i] = number + bit - (bit >> 1);
             }
-
-            var @decimal = Convert.ToInt64(sb.ToString(), 2);
-            result[i] = @decimal;
         }
 
         return result;
