@@ -4,14 +4,13 @@ using System.Collections.Generic;
 
 public class Solution {
     public int solution(int[] queue1, int[] queue2) {
-                // 1 <= queue1.Length, queue2.Length <= 300,000
+        // 1 <= queue1.Length, queue2.Length <= 300,000
         // 1 <= queue1 queue2 원소 <= 10^9 == 1,000,000,000
         // 최대 sum = 3 x 10^14 > int
 
         // 두 Queue를 만들고
         // 둘 중 큰 것이 있다면 옮기기 반복
-        // 두 Queue 중 하나의 Queue라도 모든 원소가 한 번씩 Dequeue되었다면 -1 반환
-        // 혹은 하나의 Queue라도 Count = 0이면 -1 반환
+        // 모든 원소가 한 번씩 돌았다면 -1 반환
 
         var firstQueue = new Queue<int>(queue1);
         var secondQueue = new Queue<int>(queue2);
